@@ -265,7 +265,7 @@ class face_learner(object):
                 #     self.board_val('cfp_fp', accuracy, best_threshold, roc_curve_tensor)
                 #     self.model.train()
                 if self.step % self.save_every == 0 and self.step != 0:
-                    self.save_state(conf, accuracy)
+                    self.save_state(conf, 0)
                     
                 self.step += 1
                 
