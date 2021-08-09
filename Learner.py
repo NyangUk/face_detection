@@ -124,10 +124,10 @@ class face_learner(object):
             save_path = conf.save_path
         else:
             save_path = conf.model_path            
-        self.model.load_state_dict(torch.load(save_path/'model_{}'.format(fixed_str)))
+        self.model.load_state_dict(torch.load('/home/leo/Desktop/InsightFace_Pytorch/work_space/models/model_2021-08-07-03-49_accuracy:0_step:346037_None.pth'),strict=False)
         if not model_only:
-            self.head.load_state_dict(torch.load(save_path/'head_{}'.format(fixed_str)))
-            self.optimizer.load_state_dict(torch.load(save_path/'optimizer_{}'.format(fixed_str)))
+            self.head.load_state_dict(torch.load('/home/leo/Desktop/InsightFace_Pytorch/work_space/models/head_2021-08-07-03-49_accuracy:0_step:346037_None.pth'),strict=False)
+            self.optimizer.load_state_dict(torch.load('/home/leo/Desktop/InsightFace_Pytorch/work_space/models/optimizer_2021-08-07-03-49_accuracy:0_step:346037_None.pth'),strict=False)
         
     def board_val(self, db_name, accuracy, best_threshold, roc_curve_tensor):
         self.writer.add_scalar('{}_accuracy'.format(db_name), accuracy, self.step)
@@ -228,7 +228,7 @@ class face_learner(object):
 
     def train(self, conf, epochs):
         self.model.train()
-        self.model = nn.DataParallel(self.model, device_ids=[0,1])
+        # self.model = nn.DataParallel(self.model, device_ids=[0,1])
         self.model.to(conf.device)
         running_loss = 0.            
         for e in range(epochs):
